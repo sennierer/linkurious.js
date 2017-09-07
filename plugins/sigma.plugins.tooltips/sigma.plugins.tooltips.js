@@ -206,6 +206,13 @@
 
       var containerPosition = window.getComputedStyle(renderer.container).position;
 
+      if(containerPosition == 'static') {
+        _tooltip.style.position = 'absolute';
+        var containerRect = renderer.container.getBoundingClientRect();
+        x = ~~(x - containerRect.left+15);
+        y = ~~(y - containerRect.top-8);
+      }
+
       if(containerPosition !== 'static') {
         _tooltip.style.position = 'absolute';
         var containerRect = renderer.container.getBoundingClientRect();
