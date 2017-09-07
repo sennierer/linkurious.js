@@ -374,7 +374,12 @@
       throw 'The node must have a string or number id.';
 
     if (this.nodesIndex.get(node.id))
-      throw 'The node "' + node.id + '" already exists.';
+      if (this.settings('skip_existing_nodes')) {
+        return;
+      } else {
+        throw 'The node "' + node.id + '" already exists.';
+      }
+    }
 
     var k,
         id = node.id,
@@ -457,7 +462,12 @@
       throw 'The edge target must have an existing node id.';
 
     if (this.edgesIndex.get(edge.id))
-      throw 'The edge "' + edge.id + '" already exists.';
+      if (this.settings('skip_existing_edges')) {
+            return;
+        } else {
+            throw 'The edge "' + edge.id + '" already exists.';
+        }
+    }
 
     var k,
         validEdge = Object.create(null);
