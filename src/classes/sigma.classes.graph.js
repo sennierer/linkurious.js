@@ -378,8 +378,7 @@
         return;
       } else {
         throw 'The node "' + node.id + '" already exists.';
-      }
-    }
+      };
 
     var k,
         id = node.id,
@@ -466,8 +465,7 @@
             return;
         } else {
             throw 'The edge "' + edge.id + '" already exists.';
-        }
-    }
+        };
 
     var k,
         validEdge = Object.create(null);
