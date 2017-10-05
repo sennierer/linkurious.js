@@ -213,8 +213,10 @@
         } else if (keyElements[key].for !== itemType) {
           keyElements[key].for = 'all';
         }
-
-        elt[key] = value;
+        if (itemType == 'edge') {
+          elt['edge_'+key] = value;
+        } else {
+        elt[key] = value; }
       });
 
       if (itemType === 'edge') {
@@ -239,7 +241,7 @@
     'xmlns': 'http://graphml.graphdrawing.org/xmlns',
     'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
     'xsi:schemaLocation': 'http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd',
-    'xmlns:y': 'http://www.yworks.com/xml/graphml',
+    //'xmlns:y': 'http://www.yworks.com/xml/graphml',
     'xmlns:java': 'http://www.yworks.com/xml/yfiles-common/1.0/java',
     'xmlns:sys': 'http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0',
     'xmlns:x': 'http://ww.yworks.com/xml/yfiles-common/markup/2.0'
@@ -317,7 +319,7 @@
     nodeElements.forEach(function (elt) {
       var nodeElem = createAndAppend(graphElem, 'node', { id:elt.id });
 
-      appendShapeNode(nodeElem, elt);
+      //appendShapeNode(nodeElem, elt);
 
       iterate(elt, function (value, key) {
         if (builtinAttributes.indexOf(key) !== -1) {
@@ -332,7 +334,7 @@
     edgeElements.forEach(function (elt) {
       var edgeElem = createAndAppend(graphElem, 'edge', { id:elt.id, source:elt.source, target:elt.target });
 
-      appendPolyLineEdge(edgeElem, elt);
+      //appendPolyLineEdge(edgeElem, elt);
 
       iterate(elt, function (value, key) {
         if (builtinAttributes.indexOf(key) !== -1) {
